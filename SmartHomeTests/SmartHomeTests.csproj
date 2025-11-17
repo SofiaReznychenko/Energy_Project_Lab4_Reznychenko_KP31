@@ -16,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Energy_Project\Energy_Project.csproj" />
+    <ProjectReference Include="..\Energy_Project\Energy_Project.csproj">
+      <ReferenceSourceTarget></ReferenceSourceTarget>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
