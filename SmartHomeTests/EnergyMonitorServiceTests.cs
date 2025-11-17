@@ -20,9 +20,7 @@ namespace SmartHomeTests
             _energyMonitorService = new EnergyMonitorService(_deviceRepo.Object, _planRepo.Object, _notifyService.Object);
         }
 
-        /// <summary>
-        /// Тестування правильності розрахунку поточного споживання (кВт·год)
-        /// </summary>
+       
         [Fact]
         public void CalculateCurrentUsageKwh_ShouldReturnSumOfActiveDevicesPowerUsageInKwh()
         {
@@ -37,13 +35,11 @@ namespace SmartHomeTests
 
             var result = _energyMonitorService.CalculateCurrentUsageKwh();
 
-            // (500 + 700) / 1000 = 1.2 kWh
-            Assert.Equal(1.2, result, 1); // порівняння з точністю 1 знаку після коми
+         
+            Assert.Equal(1.2, result, 1); 
         }
 
-        /// <summary>
-        /// Тестування, що при перевищенні ліміту викликається відправка повідомлення
-        /// </summary>
+       
         [Fact]
         public void CheckForOverload_ShouldSendAlert_WhenUsageExceedsLimit()
         {
@@ -62,9 +58,7 @@ namespace SmartHomeTests
             _notifyService.Verify(n => n.SendAlert(It.Is<string>(msg => msg.Contains("Overload detected"))), Times.Once);
         }
 
-        /// <summary>
-        /// Тестування, що при нормальному споживанні повідомлення не надсилається
-        /// </summary>
+        
         [Fact]
         public void CheckForOverload_ShouldNotSendAlert_WhenUsageWithinLimit()
         {
@@ -83,9 +77,7 @@ namespace SmartHomeTests
             _notifyService.Verify(n => n.SendAlert(It.IsAny<string>()), Times.Never);
         }
 
-        /// <summary>
-        /// Тестування оновлення ліміту енергоспоживання в плані
-        /// </summary>
+       
         [Fact]
         public void UpdateEnergyLimit_ShouldUpdatePlanDailyLimitAndCallUpdate()
         {
